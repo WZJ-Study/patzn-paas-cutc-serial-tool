@@ -35,6 +35,9 @@ public class TaskExecutor {
      * @param task 任务
      */
     public static void execute(Runnable task) {
+        if (null == task) {
+            return;
+        }
         EXECUTOR_SERVICE.submit(task);
     }
 
@@ -45,6 +48,9 @@ public class TaskExecutor {
      * @return Future结果
      */
     public static Future<?> run(Runnable task) {
+        if (null == task) {
+            return null;
+        }
         return EXECUTOR_SERVICE.submit(task);
     }
 
@@ -56,6 +62,9 @@ public class TaskExecutor {
      * @return ScheduledFuture结果
      */
     public static ScheduledFuture<?> scheduleWithFixedDelay(Runnable task, int initialDelay, int delay, TimeUnit timeUnit) {
+        if (null == task) {
+            return null;
+        }
         return SCHEDULED_EXECUTOR_SERVICE.scheduleWithFixedDelay(task, initialDelay, delay, timeUnit);
     }
 
@@ -66,6 +75,9 @@ public class TaskExecutor {
      * @return ScheduledFuture结果
      */
     public static ScheduledFuture<?> scheduleAtFixedRate(Runnable task, int initialDelay, int period, TimeUnit timeUnit) {
+        if (null == task) {
+            return null;
+        }
         return SCHEDULED_EXECUTOR_SERVICE.scheduleAtFixedRate(task, initialDelay, period, timeUnit);
     }
 
@@ -76,6 +88,9 @@ public class TaskExecutor {
      * @return ScheduledFuture结果
      */
     public static ScheduledFuture<?> scheduleWithFixedDelay(Runnable task, int intervalSeconds) {
+        if (null == task) {
+            return null;
+        }
         return SCHEDULED_EXECUTOR_SERVICE.scheduleWithFixedDelay(task, intervalSeconds, intervalSeconds, TimeUnit.SECONDS);
     }
 }

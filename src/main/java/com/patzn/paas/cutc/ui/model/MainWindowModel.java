@@ -1,25 +1,52 @@
 package com.patzn.paas.cutc.ui.model;
 
+import com.patzn.paas.cutc.constants.Constants;
+import com.patzn.paas.cutc.fxml.FxmlViews;
+import com.patzn.paas.cutc.modbus.ModbusManager;
+import com.patzn.paas.cutc.server.entity.CollectedValue;
+import javafx.application.Platform;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.util.LinkedList;
+import java.util.List;
 
 @Slf4j
 @Component
 public class MainWindowModel {
 
     private final ObjectProperty<Image> mainWindowLogoImage = new SimpleObjectProperty<>();
+    private final SimpleStringProperty mainWindowTitleText = new SimpleStringProperty();
 
     private final ObjectProperty<Image> closeWindowButtonImage = new SimpleObjectProperty<>();
     private final ObjectProperty<Image> maximizeWindowButtonImage = new SimpleObjectProperty<>();
     private final ObjectProperty<Image> minimizeWindowButtonImage = new SimpleObjectProperty<>();
-    private final ObjectProperty<Image> openSettingsWindowButtonImage = new SimpleObjectProperty<>();
-    private final ObjectProperty<Image> reloadMainWindowButtonImage = new SimpleObjectProperty<>();
 
     private final ObjectProperty<Image> toggleCollectStatusMenuButtonImage = new SimpleObjectProperty<>();
     private final SimpleStringProperty collectCountDownText = new SimpleStringProperty();
     private final BooleanProperty collectRunningFlag = new SimpleBooleanProperty(false);
+
+
+    private final ObjectProperty<Image> refreshSerialPortButtonImage = new SimpleObjectProperty<>();
+    private final SimpleStringProperty actualValueText = new SimpleStringProperty();
+
+    private final ObservableList<String> serialPortNameList = FXCollections.observableArrayList(Constants.PORT_NAME_LIST);
+
+    public void displayBottomText(String text) {
+        if (StringUtils.isBlank(text)) {
+            return;
+        }
+        Platform.runLater(() -> {
+            this.setActualValueText(text);
+        });
+    }
 
 
     public Image getMainWindowLogoImage() {
@@ -34,6 +61,19 @@ public class MainWindowModel {
         this.mainWindowLogoImage.set(mainWindowLogoImage);
     }
 
+
+
+    public String getMainWindowTitleText() {
+        return mainWindowTitleText.get();
+    }
+
+    public SimpleStringProperty mainWindowTitleTextProperty() {
+        return mainWindowTitleText;
+    }
+
+    public void setMainWindowTitleText(String mainWindowTitleText) {
+        this.mainWindowTitleText.set(mainWindowTitleText);
+    }
 
     public Image getCloseWindowButtonImage() {
         return closeWindowButtonImage.get();
@@ -69,30 +109,6 @@ public class MainWindowModel {
 
     public void setMinimizeWindowButtonImage(Image minimizeWindowButtonImage) {
         this.minimizeWindowButtonImage.set(minimizeWindowButtonImage);
-    }
-
-    public Image getOpenSettingsWindowButtonImage() {
-        return openSettingsWindowButtonImage.get();
-    }
-
-    public ObjectProperty<Image> openSettingsWindowButtonImageProperty() {
-        return openSettingsWindowButtonImage;
-    }
-
-    public void setOpenSettingsWindowButtonImage(Image openSettingsWindowButtonImage) {
-        this.openSettingsWindowButtonImage.set(openSettingsWindowButtonImage);
-    }
-
-    public Image getReloadMainWindowButtonImage() {
-        return reloadMainWindowButtonImage.get();
-    }
-
-    public ObjectProperty<Image> reloadMainWindowButtonImageProperty() {
-        return reloadMainWindowButtonImage;
-    }
-
-    public void setReloadMainWindowButtonImage(Image reloadMainWindowButtonImage) {
-        this.reloadMainWindowButtonImage.set(reloadMainWindowButtonImage);
     }
 
 
@@ -132,5 +148,32 @@ public class MainWindowModel {
         this.collectRunningFlag.set(collectRunningFlag);
     }
 
+    public String getActualValueText() {
+        return actualValueText.get();
+    }
+
+    public SimpleStringProperty actualValueTextProperty() {
+        return actualValueText;
+    }
+
+    public void setActualValueText(String actualValueText) {
+        this.actualValueText.set(actualValueText);
+    }
+
+    public Image getRefreshSerialPortButtonImage() {
+        return refreshSerialPortButtonImage.get();
+    }
+
+    public ObjectProperty<Image> refreshSerialPortButtonImageProperty() {
+        return refreshSerialPortButtonImage;
+    }
+
+    public void setRefreshSerialPortButtonImage(Image refreshSerialPortButtonImage) {
+        this.refreshSerialPortButtonImage.set(refreshSerialPortButtonImage);
+    }
+
+    public ObservableList<String> getSerialPortNameList() {
+        return serialPortNameList;
+    }
 
 }

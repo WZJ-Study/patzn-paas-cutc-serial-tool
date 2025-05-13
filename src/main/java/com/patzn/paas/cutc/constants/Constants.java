@@ -5,9 +5,12 @@ import com.patzn.paas.cutc.utils.date.DateFormat;
 import java.io.File;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Constants {
+
+    public static final String EMPTY_STR = "";
 
     public static final String TRUE = "true";
     public static final String FALSE = "false";
@@ -28,10 +31,6 @@ public class Constants {
     public static final String MAIN_WINDOW_TITLE = "CUTC串口工具 v0.0.1";
     public static final String SETTINGS_WINDOW_TITLE = "设置";
 
-    public static final String SCREENSHOT_IMAGE_HINT = "点击【截取】按钮，即可截取屏幕";
-    public static final String DATA_LIST_TITLE = "数据信息";
-
-    public static final List<String> DATA_TYPE_LIST = Arrays.asList("文本", "数字");
 
     /*
      * Logo图片
@@ -53,22 +52,6 @@ public class Constants {
     public static final String SETTINGS_IMAGE_PATH = "/icons/menu/Settings.png";
     public static final String DRAG_IMAGE_PATH = "/icons/menu/Drag.png";
     public static final String HISTORY_DATA_IMAGE_PATH = "/icons/menu/HistoryData.png";
-
-    /*
-     * 菜单功能按钮图片 - 截屏
-     */
-    public static final String SCREENSHOT_BLUE_IMAGE_PATH = "/icons/menu/screenshot/Screenshot_Blue.png";
-    public static final String SCREENSHOT_GREY_IMAGE_PATH = "/icons/menu/screenshot/Screenshot_Grey.png";
-    public static final String SCREENSHOT_RED_IMAGE_PATH = "/icons/menu/screenshot/Screenshot_Red.png";
-    public static final String SCREENSHOT_WHITE_IMAGE_PATH = "/icons/menu/screenshot/Screenshot_White.png";
-
-    /*
-     * 菜单功能按钮图片 - 撤回上一步操作
-     */
-    public static final String WITHDRAW_BLUE_IMAGE_PATH = "/icons/menu/withdraw/Withdraw_Blue.png";
-    public static final String WITHDRAW_GREY_IMAGE_PATH = "/icons/menu/withdraw/Withdraw_Grey.png";
-    public static final String WITHDRAW_RED_IMAGE_PATH = "/icons/menu/withdraw/Withdraw_Red.png";
-    public static final String WITHDRAW_WHITE_IMAGE_PATH = "/icons/menu/withdraw/Withdraw_White.png";
 
 
     /*
@@ -96,10 +79,6 @@ public class Constants {
     public static final String STOP_WHITE_IMAGE_PATH = "/icons/menu/stop/Stop_White.png";
 
 
-    /*
-     * 主界面图片 - 左侧截屏图片预览区域
-     */
-    public static final String SCREEN_CAPTURE_IMAGE_PATH = "/icons/main/ScreenCapture.png";
 
     /*
      * 主界面图片 - 右侧数据列表区域
@@ -111,4 +90,56 @@ public class Constants {
      * 设置窗口图片 - 应用设置按钮
      */
     public static final String APPLY_IMAGE_PATH = "/icons/settings/Apply.png";
+
+    public static final List<String> PORT_NAME_LIST = new LinkedList<>();
+    public static final List<Integer> BUAD_RATE_LIST = new LinkedList<>();
+    public static final List<String> MODBUS_FUNCTION_LIST = new LinkedList<>();
+    public static final String DEFAULT_PORT_NAME = "COM1";
+    public static final int DEFAULT_BAUD_RATE = 9600;
+    public static final int DEFAULT_SLAVE_ID = 1;
+    public static final int DEFAULT_LISTENING_ADDRESS = 1;
+
+    public static final String MODBUS_FUNCTION_01 = "01 Coil Status (0x)";
+    public static final String MODBUS_FUNCTION_02 = "02 Input Status (1x)";
+    public static final String MODBUS_FUNCTION_03 = "03 Holding Register (4x)";
+    public static final String MODBUS_FUNCTION_04 = "04 Input Registers (3x)";
+
+    static {
+        for (int i=1; i<=254; i++) {
+            PORT_NAME_LIST.add("COM" + i);
+        }
+
+        // 波特率候选列表
+        BUAD_RATE_LIST.add(110);
+        BUAD_RATE_LIST.add(300);
+        BUAD_RATE_LIST.add(600);
+        BUAD_RATE_LIST.add(1200);
+        BUAD_RATE_LIST.add(2400);
+        BUAD_RATE_LIST.add(4800);
+        BUAD_RATE_LIST.add(9600);
+        BUAD_RATE_LIST.add(14400);
+        BUAD_RATE_LIST.add(19200);
+        BUAD_RATE_LIST.add(38400);
+        BUAD_RATE_LIST.add(56000);
+        BUAD_RATE_LIST.add(57600);
+        BUAD_RATE_LIST.add(115200);
+        BUAD_RATE_LIST.add(128000);
+        BUAD_RATE_LIST.add(230400);
+        BUAD_RATE_LIST.add(256000);
+        BUAD_RATE_LIST.add(460800);
+        BUAD_RATE_LIST.add(500000);
+        BUAD_RATE_LIST.add(512000);
+        BUAD_RATE_LIST.add(600000);
+        BUAD_RATE_LIST.add(750000);
+        BUAD_RATE_LIST.add(921600);
+        BUAD_RATE_LIST.add(1000000);
+        BUAD_RATE_LIST.add(1500000);
+        BUAD_RATE_LIST.add(2000000);
+
+        // 功能列表
+        MODBUS_FUNCTION_LIST.add(MODBUS_FUNCTION_01);
+        MODBUS_FUNCTION_LIST.add(MODBUS_FUNCTION_02);
+        MODBUS_FUNCTION_LIST.add(MODBUS_FUNCTION_03);
+        MODBUS_FUNCTION_LIST.add(MODBUS_FUNCTION_04);
+    }
 }

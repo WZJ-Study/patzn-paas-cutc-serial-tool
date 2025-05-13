@@ -13,9 +13,5 @@ public class StageManager {
      */
     private Stage mainWindowStage;
 
-    /**
-     * 设置窗口
-     */
-    private Stage settingsWindowStage;
 
 }

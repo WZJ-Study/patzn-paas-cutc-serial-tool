@@ -3,7 +3,6 @@
 ## 简介
 
 > 使用JavaFx开发的本地截图工具。
->
 
 ## 占用本地端口
 
@@ -19,25 +18,15 @@
 >
 > ```json
 > {
->     "ipAddr": "172.28.137.29", 
+>     "ipAddr": "169.254.74.131", 
 >     "hostName": "PC-OFFICE-WZJ", 
->     "data": [
->         {
->             "name": "字段aaa", 
->             "position": "(73;226;159;162)", 
->             "type": "文本", 
->             "value": "OCR识别结果文本111",
->             "collectTime": "2025-03-22 16:38:43"
->         },
->         {
->             "name": "字段bbb", 
->             "position": "(12;345;456;568)", 
->             "type": "文本", 
->             "value": "OCR识别结果文本222",
->             "collectTime": "2025-03-22 16:38:43"
->         }
->     ],
->     "sendTime": "2025-03-22 16:38:43"
+>     "portName": "COM2", 
+>     "baudRate": "9600", 
+>     "slaveId": "1", 
+>     "listeningAddress": "1", 
+>     "functionType": "03 Holding Register (4x)", 
+>     "actualValue": "21588", 
+>     "collectTime": "2025-05-13 17:00:06"
 > }
 > ```
 

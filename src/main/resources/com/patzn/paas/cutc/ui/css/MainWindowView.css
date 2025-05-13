@@ -111,63 +111,12 @@
     -fx-border-insets: 2px;
 }
 
-.screenshotAreaBorder {
-    -fx-background-color: #404455;
-    -fx-background-radius: 2px;
-    -fx-border-color: WHITE;
-    -fx-border-style: dashed;
-    -fx-border-width: 2px;
-    -fx-border-radius: 2px;
-}
 
 
-.screenshotArea {
-    -fx-background-color: #404455;
-    -fx-background-radius: 2px;
-    -fx-border-color: blue;
-    -fx-border-style: solid;
-    -fx-border-width: 0;
-    -fx-border-radius: 2px;
-}
-
-.screenshotImage {
-    -fx-background-color: #404455;
-}
-
-.dataListTitleBar {
-    -fx-background-color: #404455;
-    -fx-border-color: green;
-    -fx-border-width: 0;
-    -fx-border-style: solid;
-}
-
-
-.dataListTitleBarButton {
-    -fx-background-color: #404455;
-    -fx-background-radius: 5px;
-    -fx-border-color: #404455;
-    -fx-border-radius: 5px;
-    -fx-border-width: 0;
-    -fx-border-style: solid;
-    -fx-border-insets: 2px;
-}
-
-.dataListTitleBarButton:hover {
-    -fx-background-color: #404455;
-    -fx-background-radius: 5px;
-    -fx-border-color: #FFFFFF;
-    -fx-border-radius: 5px;
-    -fx-border-width: 2px;
-    -fx-border-style: dashed;
-    -fx-border-insets: 2px;
-}
-
-.dataListTitleBarButton:pressed {
+.actualValueDisplayArea {
     -fx-background-color: #2A2C37;
-    -fx-background-radius: 5px;
-    -fx-border-color: #FFFFFF;
-    -fx-border-radius: 5px;
-    -fx-border-width: 2px;
+    -fx-border-color: yellow;
     -fx-border-style: solid;
-    -fx-border-insets: 2px;
+    -fx-border-width: 0;
+    -fx-border-radius: 5px;
 }
