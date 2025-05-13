@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: PT-OCR
+    name: CutcSerialTool
   main:
     allow-circular-references: true
     allow-bean-definition-overriding: true
