@@ -13,5 +13,6 @@ public class ConfigKeys {
     public static final String KEY_SLAVE_ID = "slaveId";
     public static final String KEY_LISTENING_ADDRESS = "listeningAddress";
     public static final String KEY_FUNCTION_TYPE = "functionType";
+    public static final String KEY_DATA_TYPE = "dataType";
 
 }

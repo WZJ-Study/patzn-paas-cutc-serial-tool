@@ -20,12 +20,10 @@ public class ModbusConnection {
     private String portName;
     private int baudRate;
     private ModbusMaster master;
-    private final AtomicBoolean connectedFlag;
 
     public ModbusConnection(String portName, int baudRate) {
         this.portName = portName;
         this.baudRate = baudRate;
-        connectedFlag = new AtomicBoolean(false);
     }
 
     public void connect() {
@@ -38,11 +36,9 @@ public class ModbusConnection {
             // 超时时间（ms）
             master.setTimeout(500);
             // 重试次数
-            master.setRetries(3);
+            master.setRetries(1);
             // 初始化主站，只有init后才可以读写
             master.init();
-            // 设置连接状态
-            connectedFlag.set(true);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -52,32 +48,36 @@ public class ModbusConnection {
         if (master != null) {
             master.destroy();
         }
-        connectedFlag.set(false);
     }
 
-    public boolean isConnected() {
-        return connectedFlag.get();
+    public void tryDisconnect() {
+        try {
+            disconnect();
+        } catch (Exception e) {
+            log.error("==== tryDisconnect ==== 断开连接失败！", e);
+        }
+    }
+
+    public boolean isInitialized() {
+        if (master != null) {
+            return master.isInitialized();
+        }
+        return false;
     }
 
     public void reset(String portName, int baudRate) {
-        // 已连接的，先断开连接
-        if (isConnected()) {
-            disconnect();
-        }
-        this.portName = portName;
-        this.baudRate = baudRate;
-    }
-
-    public void changeBaudRate(int baudRate) {
-        if (this.baudRate == baudRate) {
-            // 无需修改
+        if (Objects.equals(this.portName, portName) && this.baudRate == baudRate) {
+            // 不需要重置
             return;
         }
+
         // 已连接的，先断开连接
-        if (isConnected()) {
+        if (isInitialized()) {
             disconnect();
         }
-        // 修改波特率
+
+        // 修改配置
+        this.portName = portName;
         this.baudRate = baudRate;
     }
 
@@ -134,18 +134,5 @@ public class ModbusConnection {
         return master.getValue(loc);
     }
 
-
-    public static void main(String[] args) {
-        ModbusConnection connection = new ModbusConnection("COM2", 9600);
-        try {
-            connection.connect();
-            Number value = connection.readHoldingRegister(1, 1, DataType.TWO_BYTE_INT_SIGNED);
-            log.info("读取结果：{}", value);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            connection.disconnect();
-        }
-    }
 
 }

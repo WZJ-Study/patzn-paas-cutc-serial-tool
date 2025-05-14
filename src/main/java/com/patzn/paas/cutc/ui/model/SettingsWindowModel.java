@@ -22,6 +22,7 @@ public class SettingsWindowModel {
     private final IntegerProperty slaveId = new SimpleIntegerProperty();
     private final IntegerProperty listeningAddress = new SimpleIntegerProperty();
     private final StringProperty functionType = new SimpleStringProperty();
+    private final IntegerProperty dataType = new SimpleIntegerProperty();
 
 
     public Image getCloseWindowButtonImage() {
@@ -147,4 +148,15 @@ public class SettingsWindowModel {
         this.functionType.set(functionType);
     }
 
+    public int getDataType() {
+        return dataType.get();
+    }
+
+    public IntegerProperty dataTypeProperty() {
+        return dataType;
+    }
+
+    public void setDataType(int dataType) {
+        this.dataType.set(dataType);
+    }
 }

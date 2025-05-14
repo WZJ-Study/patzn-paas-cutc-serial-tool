@@ -4,6 +4,7 @@ import com.patzn.paas.cutc.component.TaskExecutor;
 import com.patzn.paas.cutc.constants.Constants;
 import com.patzn.paas.cutc.modbus.ModbusManager;
 import com.patzn.paas.cutc.modbus.connection.ModbusConnection;
+import com.patzn.paas.cutc.modbus.enums.DataTypeEnum;
 import com.patzn.paas.cutc.server.entity.CollectedValue;
 import com.patzn.paas.cutc.ui.model.SettingsWindowModel;
 import com.patzn.paas.cutc.utils.date.DateUtils;
@@ -57,21 +58,26 @@ public class CollectTask implements Runnable {
     }
 
     private String collectActualValue() {
-        ModbusConnection connection = this.modbusManager.getConnection();
-        if (null == connection) {
-            log.info("==== collectActualValue ==== 串口连接为空，跳过！");
-            this.modbusManager.displayBottomText("空连接！");
-            return null;
-        }
-        if (!connection.isConnected()) {
-            log.info("==== collectActualValue ==== 串口连接未建立，跳过！");
-            this.modbusManager.displayBottomText("连接未建立！");
-            return null;
-        }
-        int slaveId = settingsWindowModel.getSlaveId();
-        int address = settingsWindowModel.getListeningAddress();
-        String functionType = settingsWindowModel.getFunctionType();
         try {
+            ModbusConnection connection = this.modbusManager.getConnection();
+            if (null == connection) {
+                log.info("==== collectActualValue ==== 串口连接为空，跳过！");
+                this.modbusManager.displayBottomText("空连接！");
+                return null;
+            }
+            if (!connection.isInitialized()) {
+                log.info("==== collectActualValue ==== 串口连接未建立，跳过！");
+                this.modbusManager.displayBottomText("连接未建立！");
+                return null;
+            }
+            int slaveId = settingsWindowModel.getSlaveId();
+            int address = settingsWindowModel.getListeningAddress();
+            String functionType = settingsWindowModel.getFunctionType();
+            DataTypeEnum dataTypeEnum = DataTypeEnum.ofValue(settingsWindowModel.getDataType());
+            if (dataTypeEnum == null) {
+                dataTypeEnum = DataTypeEnum.TWO_BYTE_INT_SIGNED;
+            }
+
             String actualValue = null;
             switch (functionType) {
                 case Constants.MODBUS_FUNCTION_01:
@@ -83,11 +89,11 @@ public class CollectTask implements Runnable {
                     actualValue = inputStatus == null ? Constants.EMPTY_STR : inputStatus.toString();
                     break;
                 case Constants.MODBUS_FUNCTION_03:
-                    Number holdingRegister = connection.readHoldingRegister(slaveId, address, DataType.TWO_BYTE_INT_SIGNED);
+                    Number holdingRegister = connection.readHoldingRegister(slaveId, address, dataTypeEnum.getValue());
                     actualValue = holdingRegister == null ? Constants.EMPTY_STR : holdingRegister.toString();
                     break;
                 case Constants.MODBUS_FUNCTION_04:
-                    Number inputRegisters = connection.readInputRegisters(slaveId, address, DataType.TWO_BYTE_INT_SIGNED);
+                    Number inputRegisters = connection.readInputRegisters(slaveId, address, dataTypeEnum.getValue());
                     actualValue = inputRegisters == null ? Constants.EMPTY_STR : inputRegisters.toString();
                     break;
             }

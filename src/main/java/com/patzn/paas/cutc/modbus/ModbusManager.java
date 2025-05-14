@@ -61,7 +61,6 @@ public class ModbusManager {
     /**
      * Modbus连接
      */
-    @Getter
     private ModbusConnection connection;
 
     /**
@@ -81,29 +80,54 @@ public class ModbusManager {
         this.running = false;
     }
 
-    public void tryConnect(String portName, int baudRate) {
-        if (StringUtils.isBlank(portName)) {
+    public ModbusConnection getConnection() {
+        // 建立连接
+        boolean connected = tryConnect(true);
+        if (!connected) {
+            // 连接建立失败，跳过！
+            return null;
+        }
+        return connection;
+    }
+
+    public boolean tryConnect(boolean forceReconnect) {
+        if (StringUtils.isBlank(settingsWindowModel.getPortName())) {
             this.displayBottomText("未指定端口号！");
             throw new RuntimeException("未指定端口号！");
         }
         try {
             if (null != connection) {
                 // 已存在的连接，重置端口号和波特率
-                connection.reset(portName, baudRate);
+                connection.reset(settingsWindowModel.getPortName(), settingsWindowModel.getBaudRate());
+                if (!connection.isInitialized()) {
+                    // 若断开，则重新连接
+                    connection.connect();
+                } else if (forceReconnect) {
+                    // 强制断开连接，然后重新连接
+                    connection.tryDisconnect();
+                    connection.connect();
+                }
             } else {
                 // 连接不存在，创建新连接
-                connection = new ModbusConnection(portName, baudRate);
+                connection = new ModbusConnection(settingsWindowModel.getPortName(), settingsWindowModel.getBaudRate());
+                connection.connect();
             }
-            connection.connect();
+            return true;
         } catch (Exception e) {
+            log.error("==== tryConnect ==== 连接失败！", e);
             this.displayBottomText("连接失败！" + e.getMessage());
-            throw new RuntimeException("连接失败！" + e.getMessage());
         }
+        return false;
     }
 
     public void disconnect() {
         if (null != connection) {
-            connection.disconnect();
+            try {
+                connection.disconnect();
+            } catch (Exception e) {
+                log.error("==== disconnect ==== 断开连接失败！", e);
+                this.displayBottomText("断开连接失败！" + e.getMessage());
+            }
         }
     }
 
@@ -113,11 +137,15 @@ public class ModbusManager {
         }
 
         // 建立连接
-        tryConnect(settingsWindowModel.getPortName(), settingsWindowModel.getBaudRate());
+        boolean connected = tryConnect(true);
+        if (!connected) {
+            // 连接建立失败，跳过！
+            return;
+        }
 
         // 开始定时采集
         CollectTask collectTask = new CollectTask(this, settingsWindowModel);
-        this.scheduledFuture = TaskExecutor.scheduleWithFixedDelay(collectTask, intervalSeconds, intervalSeconds, TimeUnit.SECONDS);
+        this.scheduledFuture = TaskExecutor.scheduleWithFixedDelay(collectTask, 0, intervalSeconds, TimeUnit.SECONDS);
 
         // 开始倒计时
         this.countDownSeconds.set(this.intervalSeconds);

@@ -6,10 +6,12 @@ import com.patzn.paas.cutc.config.ServerConfig;
 import com.patzn.paas.cutc.constants.ConfigKeys;
 import com.patzn.paas.cutc.constants.Constants;
 import com.patzn.paas.cutc.modbus.ModbusManager;
+import com.patzn.paas.cutc.modbus.enums.DataTypeEnum;
 import com.patzn.paas.cutc.ui.model.*;
 import com.patzn.paas.cutc.ui.utils.*;
 import com.patzn.paas.cutc.utils.spring.SpringHelper;
 import com.patzn.paas.cutc.ui.helper.StageManager;
+import com.serotonin.modbus4j.code.DataType;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -116,6 +118,9 @@ public class MainWindowView implements Initializable {
     @FXML
     public ChoiceBox<String> functionTypeInput;
 
+    @FXML
+    public ChoiceBox<String> dataTypeInput;
+
     // --------------------------------[ 采集间隔（秒） ]--------------------------------
 
     @FXML
@@ -181,6 +186,17 @@ public class MainWindowView implements Initializable {
             }
         });
 
+        dataTypeInput.setItems(FXCollections.observableList(DataTypeEnum.getDisplayNameList()));
+        dataTypeInput.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            log.info("==== 选择DataType ==== {}", newValue);
+            if (null != newValue) {
+                DataTypeEnum newValueEnum = DataTypeEnum.ofDisplayName(newValue);
+                if (null != newValueEnum) {
+                    configManager.setProperty(ConfigKeys.KEY_DATA_TYPE, newValueEnum.getName());
+                    settingsWindowModel.setDataType(newValueEnum.getValue());
+                }
+            }
+        });
 
         // 绑定FXML组件与model属性 - 底部显示文本
         actualValueText.textProperty().bindBidirectional(mainWindowModel.actualValueTextProperty());
@@ -254,13 +270,24 @@ public class MainWindowView implements Initializable {
         // 设置#5.监听的寄存器FunctionType
         String functionType = configManager.getProperty(ConfigKeys.KEY_FUNCTION_TYPE);
         if (StringUtils.isBlank(functionType)) {
+            functionType = Constants.MODBUS_FUNCTION_03;
             configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE, Constants.MODBUS_FUNCTION_03);
             savePropertiesFlag = true;
         }
         // 设置默认选中
         functionTypeInput.getSelectionModel().select(Constants.MODBUS_FUNCTION_LIST.indexOf(functionType));
 
-        // 设置#6.定时采集间隔（秒）
+        // 设置#6.监听的寄存器DataType
+        String dataType = configManager.getProperty(ConfigKeys.KEY_DATA_TYPE);
+        if (StringUtils.isBlank(dataType)) {
+            dataType = DataTypeEnum.TWO_BYTE_INT_SIGNED.getName();
+            configManager.setProperty(ConfigKeys.KEY_DATA_TYPE, DataTypeEnum.TWO_BYTE_INT_SIGNED.getName());
+            savePropertiesFlag = true;
+        }
+        // 设置默认选中
+        dataTypeInput.getSelectionModel().select(DataTypeEnum.indexOfName(dataType));
+
+        // 设置#7.定时采集间隔（秒）
         String intervalSeconds = configManager.getProperty(ConfigKeys.KEY_INTERVAL_SECONDS);
         if (StringUtils.isBlank(intervalSeconds)) {
             intervalSeconds = String.valueOf(Constants.DEFAULT_INTERVAL_SECONDS);
@@ -269,7 +296,7 @@ public class MainWindowView implements Initializable {
         }
         intervalSecondsInput.setText(intervalSeconds);
 
-        // 设置#7.Hook回调URL
+        // 设置#8.Hook回调URL
         String callbackHookUrl = configManager.getProperty(ConfigKeys.KEY_CALLBACK_HOOK_URL);
         if (StringUtils.isBlank(callbackHookUrl)) {
             callbackHookUrl = serverConfig.buildUrl(Constants.DEFAULT_CALLBACK_HOOK_URI);
@@ -278,7 +305,7 @@ public class MainWindowView implements Initializable {
         }
         callbackHookUrlInput.setText(callbackHookUrl);
 
-        // 设置#7.Hook回调URL - 是否启用
+        // 设置#8.Hook回调URL - 是否启用
         String callbackHookEnabledFlag = configManager.getProperty(ConfigKeys.KEY_CALLBACK_HOOK_ENABLED_FLAG);
         if (StringUtils.isBlank(callbackHookEnabledFlag)) {
             callbackHookEnabledFlag = Constants.TRUE;
@@ -298,6 +325,7 @@ public class MainWindowView implements Initializable {
         slaveIdInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         listeningAddressInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         functionTypeInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        dataTypeInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         intervalSecondsInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         callbackHookUrlInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         callbackHookEnabledInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
@@ -483,20 +511,32 @@ public class MainWindowView implements Initializable {
             throw new RuntimeException("请选择Function！");
         }
 
-        // 设置#6.定时采集间隔（秒）
+        // 设置#6.监听的寄存器DataType
+        String dataType = dataTypeInput.getSelectionModel().getSelectedItem();
+        if (StringUtils.isNotBlank(dataType)) {
+            log.info("==== applySettings ==== dataType = {}", dataType);
+            DataTypeEnum dataTypeEnum = DataTypeEnum.ofDisplayName(dataType);
+            settingsWindowModel.setDataType(dataTypeEnum.getValue());
+            configManager.setProperty(ConfigKeys.KEY_DATA_TYPE, dataTypeEnum.getName());
+        } else {
+            this.mainWindowModel.displayBottomText("请选择Function！");
+            throw new RuntimeException("请选择Function！");
+        }
+
+        // 设置#7.定时采集间隔（秒）
         int intervalSeconds = this.processIntervalSecondsInput(intervalSecondsInput.getText());
         String intervalSecondsText = String.valueOf(intervalSeconds);
         intervalSecondsInput.setText(intervalSecondsText);
         settingsWindowModel.setIntervalSeconds(intervalSeconds);
         configManager.setProperty(ConfigKeys.KEY_INTERVAL_SECONDS, intervalSecondsText);
 
-        // 设置#7.Hook回调URL
+        // 设置#8.Hook回调URL
         String callbackHookUrl = this.processCallbackHookUrlInput(callbackHookUrlInput.getText());
         callbackHookUrlInput.setText(callbackHookUrl);
         settingsWindowModel.setCallbackHookUrl(callbackHookUrl);
         configManager.setProperty(ConfigKeys.KEY_CALLBACK_HOOK_URL, callbackHookUrl);
 
-        // 设置#7.Hook回调URL - 是否启用
+        // 设置#8.Hook回调URL - 是否启用
         boolean callbackHookEnabledFlag = callbackHookEnabledInput.isSelected();
         settingsWindowModel.setCallbackHookEnabledFlag(callbackHookEnabledFlag);
         configManager.setProperty(ConfigKeys.KEY_CALLBACK_HOOK_ENABLED_FLAG, callbackHookEnabledFlag ? Constants.TRUE : Constants.FALSE);
