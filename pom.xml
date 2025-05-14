@@ -195,7 +195,7 @@
                 <artifactId>javapackager</artifactId>
                 <version>1.7.6</version>
                 <configuration>
-                    <name>PT.OCR</name>
+                    <name>CutcSerialTool</name>
                     <!--程序入口文件/启动类 -->
                     <mainClass>com.patzn.paas.cutc.CutcSerialToolApplication</mainClass>
                     <!-- 精简版jre -->
