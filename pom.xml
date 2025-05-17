@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.patzn.paas.cutc</groupId>
     <artifactId>serial-tool</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>CutcSerialTool</name>
     <description>国合串口工具</description>
     <properties>
