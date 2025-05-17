@@ -2,7 +2,7 @@
 
 ## 简介
 
-> 使用JavaFx开发的本地截图工具。
+> 使用JavaFx开发的本地串口Modbus监听工具。
 
 ## 占用本地端口
 
@@ -18,15 +18,59 @@
 >
 > ```json
 > {
->     "ipAddr": "169.254.74.131", 
->     "hostName": "PC-OFFICE-WZJ", 
->     "portName": "COM2", 
->     "baudRate": "9600", 
->     "slaveId": "1", 
->     "listeningAddress": "1", 
->     "functionType": "03 Holding Register (4x)", 
->     "actualValue": "21588", 
->     "collectTime": "2025-05-13 17:00:06"
+>     "data": [
+>         {
+>             "actualValue": "123",
+>             "baudRate": "9600",
+>             "collectTime": "2025-05-17 10:58:30",
+>             "dataType": "TWO_BYTE_INT_SIGNED",
+>             "dataTypeName": "2字节有符号整数",
+>             "functionType": "03 Holding Register (4x)",
+>             "listeningAddress": "1",
+>             "portName": "COM2",
+>             "position": "1#",
+>             "slaveId": "1"
+>         },
+>         {
+>             "actualValue": "234",
+>             "baudRate": "9600",
+>             "collectTime": "2025-05-17 10:58:30",
+>             "dataType": "TWO_BYTE_INT_SIGNED",
+>             "dataTypeName": "2字节有符号整数",
+>             "functionType": "03 Holding Register (4x)",
+>             "listeningAddress": "2",
+>             "portName": "COM2",
+>             "position": "2#",
+>             "slaveId": "1"
+>         },
+>         {
+>             "actualValue": "345",
+>             "baudRate": "9600",
+>             "collectTime": "2025-05-17 10:58:30",
+>             "dataType": "TWO_BYTE_INT_SIGNED",
+>             "dataTypeName": "2字节有符号整数",
+>             "functionType": "03 Holding Register (4x)",
+>             "listeningAddress": "3",
+>             "portName": "COM2",
+>             "position": "3#",
+>             "slaveId": "1"
+>         },
+>         {
+>             "actualValue": "456",
+>             "baudRate": "9600",
+>             "collectTime": "2025-05-17 10:58:30",
+>             "dataType": "TWO_BYTE_INT_SIGNED",
+>             "dataTypeName": "2字节有符号整数",
+>             "functionType": "03 Holding Register (4x)",
+>             "listeningAddress": "4",
+>             "portName": "COM2",
+>             "position": "4#",
+>             "slaveId": "1"
+>         }
+>     ],
+>     "hostName": "PC-OFFICE-WZJ",
+>     "ipAddr": "172.28.9.196",
+>     "sendTime": "2025-05-17 10:58:30"
 > }
 > ```
 

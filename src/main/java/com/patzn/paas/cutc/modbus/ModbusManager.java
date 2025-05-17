@@ -6,15 +6,18 @@ import com.patzn.paas.cutc.constants.Constants;
 import com.patzn.paas.cutc.modbus.connection.ModbusConnection;
 import com.patzn.paas.cutc.modbus.task.CallbackHookTask;
 import com.patzn.paas.cutc.modbus.task.CollectTask;
-import com.patzn.paas.cutc.server.entity.CollectedValue;
+import com.patzn.paas.cutc.server.entity.ModbusRegisterValue;
 import com.patzn.paas.cutc.ui.model.MainWindowModel;
 import com.patzn.paas.cutc.ui.model.SettingsWindowModel;
 import javafx.application.Platform;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -200,11 +203,11 @@ public class ModbusManager {
         mainWindowModel.displayBottomText(text);
     }
 
-    public CallbackHookTask createCallbackHookTask(CollectedValue result) {
-        if (null == result) {
+    public CallbackHookTask createCallbackHookTask(List<ModbusRegisterValue> resultList) {
+        if (CollectionUtils.isEmpty(resultList)) {
             return null;
         }
-        return new CallbackHookTask(result, this.settingsWindowModel, this.serverConfig);
+        return new CallbackHookTask(resultList, this.settingsWindowModel, this.serverConfig);
     }
 
 }

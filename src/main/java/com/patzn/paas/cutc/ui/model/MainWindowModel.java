@@ -1,9 +1,6 @@
 package com.patzn.paas.cutc.ui.model;
 
 import com.patzn.paas.cutc.constants.Constants;
-import com.patzn.paas.cutc.fxml.FxmlViews;
-import com.patzn.paas.cutc.modbus.ModbusManager;
-import com.patzn.paas.cutc.server.entity.CollectedValue;
 import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -13,10 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import java.util.LinkedList;
-import java.util.List;
 
 @Slf4j
 @Component

@@ -7,17 +7,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CollectedValue {
+public class ModbusRegisterValue {
 
-    /**
-     * 上位机IP地址
-     */
-    private String ipAddr;
-
-    /**
-     * 上位机主机名称
-     */
-    private String hostName;
+    private String position;
 
     // ================================[ 串口设置 ]================================
 
@@ -48,6 +40,16 @@ public class CollectedValue {
      */
     private String functionType;
 
+    /**
+     * Modbus-数据类型DataType
+     */
+    private String dataType;
+
+    /**
+     * Modbus-数据类型DataType
+     */
+    private String dataTypeName;
+
     // ================================[ 采集数据 ]================================
 
     /**
@@ -61,7 +63,7 @@ public class CollectedValue {
     private String collectTime;
 
     public String displayValue() {
-        return String.format("【%s】%s", collectTime, actualValue);
+        return String.format("%s=%s", listeningAddress, actualValue);
     }
 
 }

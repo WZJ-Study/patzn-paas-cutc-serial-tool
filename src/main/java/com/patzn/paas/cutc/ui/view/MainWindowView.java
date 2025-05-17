@@ -112,6 +112,11 @@ public class MainWindowView implements Initializable {
     @FXML
     public TextField slaveIdInput;
 
+    // --------------------------------[ 寄存器#1 ]--------------------------------
+
+    @FXML
+    public CheckBox listeningAddressEnabledInput;
+
     @FXML
     private TextField listeningAddressInput;
 
@@ -120,6 +125,49 @@ public class MainWindowView implements Initializable {
 
     @FXML
     public ChoiceBox<String> dataTypeInput;
+
+    // --------------------------------[ 寄存器#2 ]--------------------------------
+
+    @FXML
+    public CheckBox listeningAddressEnabledInput2;
+
+    @FXML
+    private TextField listeningAddressInput2;
+
+    @FXML
+    public ChoiceBox<String> functionTypeInput2;
+
+    @FXML
+    public ChoiceBox<String> dataTypeInput2;
+
+    // --------------------------------[ 寄存器#3 ]--------------------------------
+
+    @FXML
+    public CheckBox listeningAddressEnabledInput3;
+
+    @FXML
+    private TextField listeningAddressInput3;
+
+    @FXML
+    public ChoiceBox<String> functionTypeInput3;
+
+    @FXML
+    public ChoiceBox<String> dataTypeInput3;
+
+
+    // --------------------------------[ 寄存器#4 ]--------------------------------
+
+    @FXML
+    public CheckBox listeningAddressEnabledInput4;
+
+    @FXML
+    private TextField listeningAddressInput4;
+
+    @FXML
+    public ChoiceBox<String> functionTypeInput4;
+
+    @FXML
+    public ChoiceBox<String> dataTypeInput4;
 
     // --------------------------------[ 采集间隔（秒） ]--------------------------------
 
@@ -179,7 +227,7 @@ public class MainWindowView implements Initializable {
 
         functionTypeInput.setItems(FXCollections.observableList(Constants.MODBUS_FUNCTION_LIST));
         functionTypeInput.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            log.info("==== 选择Function ==== {}", newValue);
+            log.info("==== 寄存器#1 - 选择Function ==== {}", newValue);
             if (null != newValue) {
                 configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE, newValue);
                 settingsWindowModel.setFunctionType(newValue);
@@ -188,12 +236,78 @@ public class MainWindowView implements Initializable {
 
         dataTypeInput.setItems(FXCollections.observableList(DataTypeEnum.getDisplayNameList()));
         dataTypeInput.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            log.info("==== 选择DataType ==== {}", newValue);
+            log.info("==== 寄存器#1 - 选择DataType ==== {}", newValue);
             if (null != newValue) {
                 DataTypeEnum newValueEnum = DataTypeEnum.ofDisplayName(newValue);
                 if (null != newValueEnum) {
                     configManager.setProperty(ConfigKeys.KEY_DATA_TYPE, newValueEnum.getName());
                     settingsWindowModel.setDataType(newValueEnum.getValue());
+                }
+            }
+        });
+
+
+        functionTypeInput2.setItems(FXCollections.observableList(Constants.MODBUS_FUNCTION_LIST));
+        functionTypeInput2.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            log.info("==== 寄存器#2 - 选择Function ==== {}", newValue);
+            if (null != newValue) {
+                configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE_2, newValue);
+                settingsWindowModel.setFunctionType2(newValue);
+            }
+        });
+
+        dataTypeInput2.setItems(FXCollections.observableList(DataTypeEnum.getDisplayNameList()));
+        dataTypeInput2.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            log.info("==== 寄存器#2 - 选择DataType ==== {}", newValue);
+            if (null != newValue) {
+                DataTypeEnum newValueEnum = DataTypeEnum.ofDisplayName(newValue);
+                if (null != newValueEnum) {
+                    configManager.setProperty(ConfigKeys.KEY_DATA_TYPE_2, newValueEnum.getName());
+                    settingsWindowModel.setDataType2(newValueEnum.getValue());
+                }
+            }
+        });
+
+
+        functionTypeInput3.setItems(FXCollections.observableList(Constants.MODBUS_FUNCTION_LIST));
+        functionTypeInput3.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            log.info("==== 寄存器#3 - 选择Function ==== {}", newValue);
+            if (null != newValue) {
+                configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE_3, newValue);
+                settingsWindowModel.setFunctionType3(newValue);
+            }
+        });
+
+        dataTypeInput3.setItems(FXCollections.observableList(DataTypeEnum.getDisplayNameList()));
+        dataTypeInput3.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            log.info("==== 寄存器#3 - 选择DataType ==== {}", newValue);
+            if (null != newValue) {
+                DataTypeEnum newValueEnum = DataTypeEnum.ofDisplayName(newValue);
+                if (null != newValueEnum) {
+                    configManager.setProperty(ConfigKeys.KEY_DATA_TYPE_3, newValueEnum.getName());
+                    settingsWindowModel.setDataType3(newValueEnum.getValue());
+                }
+            }
+        });
+
+
+        functionTypeInput4.setItems(FXCollections.observableList(Constants.MODBUS_FUNCTION_LIST));
+        functionTypeInput4.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            log.info("==== 寄存器#4 - 选择Function ==== {}", newValue);
+            if (null != newValue) {
+                configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE_4, newValue);
+                settingsWindowModel.setFunctionType4(newValue);
+            }
+        });
+
+        dataTypeInput4.setItems(FXCollections.observableList(DataTypeEnum.getDisplayNameList()));
+        dataTypeInput4.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            log.info("==== 寄存器#4 - 选择DataType ==== {}", newValue);
+            if (null != newValue) {
+                DataTypeEnum newValueEnum = DataTypeEnum.ofDisplayName(newValue);
+                if (null != newValueEnum) {
+                    configManager.setProperty(ConfigKeys.KEY_DATA_TYPE_4, newValueEnum.getName());
+                    settingsWindowModel.setDataType4(newValueEnum.getValue());
                 }
             }
         });
@@ -258,7 +372,16 @@ public class MainWindowView implements Initializable {
         }
         slaveIdInput.setText(slaveIdStr);
 
-        // 设置#4.监听的寄存器Address
+        // 设置#4.寄存器#1 - 是否启用监听
+        String listeningAddressEnabledFlag = configManager.getProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG);
+        if (StringUtils.isBlank(listeningAddressEnabledFlag)) {
+            listeningAddressEnabledFlag = Constants.TRUE;
+            configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG, listeningAddressEnabledFlag);
+            savePropertiesFlag = true;
+        }
+        listeningAddressEnabledInput.setSelected(Objects.equals(listeningAddressEnabledFlag, Constants.TRUE));
+
+        // 设置#4.寄存器#1 - 监听的寄存器Address
         String listeningAddress = configManager.getProperty(ConfigKeys.KEY_LISTENING_ADDRESS);
         if (StringUtils.isBlank(listeningAddress)) {
             listeningAddress = String.valueOf(Constants.DEFAULT_LISTENING_ADDRESS);
@@ -267,7 +390,7 @@ public class MainWindowView implements Initializable {
         }
         listeningAddressInput.setText(listeningAddress);
 
-        // 设置#5.监听的寄存器FunctionType
+        // 设置#4.寄存器#1 - 监听的寄存器FunctionType
         String functionType = configManager.getProperty(ConfigKeys.KEY_FUNCTION_TYPE);
         if (StringUtils.isBlank(functionType)) {
             functionType = Constants.MODBUS_FUNCTION_03;
@@ -277,7 +400,7 @@ public class MainWindowView implements Initializable {
         // 设置默认选中
         functionTypeInput.getSelectionModel().select(Constants.MODBUS_FUNCTION_LIST.indexOf(functionType));
 
-        // 设置#6.监听的寄存器DataType
+        // 设置#4.寄存器#1 - 监听的寄存器DataType
         String dataType = configManager.getProperty(ConfigKeys.KEY_DATA_TYPE);
         if (StringUtils.isBlank(dataType)) {
             dataType = DataTypeEnum.TWO_BYTE_INT_SIGNED.getName();
@@ -287,7 +410,127 @@ public class MainWindowView implements Initializable {
         // 设置默认选中
         dataTypeInput.getSelectionModel().select(DataTypeEnum.indexOfName(dataType));
 
-        // 设置#7.定时采集间隔（秒）
+
+
+        // 设置#5.寄存器#2 - 是否启用监听
+        String listeningAddressEnabledFlag2 = configManager.getProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG_2);
+        if (StringUtils.isBlank(listeningAddressEnabledFlag2)) {
+            listeningAddressEnabledFlag2 = Constants.TRUE;
+            configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG_2, listeningAddressEnabledFlag2);
+            savePropertiesFlag = true;
+        }
+        listeningAddressEnabledInput2.setSelected(Objects.equals(listeningAddressEnabledFlag2, Constants.TRUE));
+
+        // 设置#5.寄存器#2 - 监听的寄存器Address
+        String listeningAddress2 = configManager.getProperty(ConfigKeys.KEY_LISTENING_ADDRESS_2);
+        if (StringUtils.isBlank(listeningAddress2)) {
+            listeningAddress2 = String.valueOf(Constants.DEFAULT_LISTENING_ADDRESS);
+            configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_2, listeningAddress2);
+            savePropertiesFlag = true;
+        }
+        listeningAddressInput2.setText(listeningAddress2);
+
+        // 设置#5.寄存器#2 - 监听的寄存器FunctionType
+        String functionType2 = configManager.getProperty(ConfigKeys.KEY_FUNCTION_TYPE_2);
+        if (StringUtils.isBlank(functionType2)) {
+            functionType2 = Constants.MODBUS_FUNCTION_03;
+            configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE_2, Constants.MODBUS_FUNCTION_03);
+            savePropertiesFlag = true;
+        }
+        // 设置默认选中
+        functionTypeInput2.getSelectionModel().select(Constants.MODBUS_FUNCTION_LIST.indexOf(functionType2));
+
+        // 设置#5.寄存器#2 - 监听的寄存器DataType
+        String dataType2 = configManager.getProperty(ConfigKeys.KEY_DATA_TYPE_2);
+        if (StringUtils.isBlank(dataType2)) {
+            dataType2 = DataTypeEnum.TWO_BYTE_INT_SIGNED.getName();
+            configManager.setProperty(ConfigKeys.KEY_DATA_TYPE_2, DataTypeEnum.TWO_BYTE_INT_SIGNED.getName());
+            savePropertiesFlag = true;
+        }
+        // 设置默认选中
+        dataTypeInput2.getSelectionModel().select(DataTypeEnum.indexOfName(dataType2));
+
+
+        // 设置#6.寄存器#3 - 是否启用监听
+        String listeningAddressEnabledFlag3 = configManager.getProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG_3);
+        if (StringUtils.isBlank(listeningAddressEnabledFlag3)) {
+            listeningAddressEnabledFlag3 = Constants.TRUE;
+            configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG_3, listeningAddressEnabledFlag3);
+            savePropertiesFlag = true;
+        }
+        listeningAddressEnabledInput3.setSelected(Objects.equals(listeningAddressEnabledFlag3, Constants.TRUE));
+
+        // 设置#6.寄存器#3 - 监听的寄存器Address
+        String listeningAddress3 = configManager.getProperty(ConfigKeys.KEY_LISTENING_ADDRESS_3);
+        if (StringUtils.isBlank(listeningAddress3)) {
+            listeningAddress3 = String.valueOf(Constants.DEFAULT_LISTENING_ADDRESS);
+            configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_3, listeningAddress3);
+            savePropertiesFlag = true;
+        }
+        listeningAddressInput3.setText(listeningAddress3);
+
+        // 设置#6.寄存器#3 - 监听的寄存器FunctionType
+        String functionType3 = configManager.getProperty(ConfigKeys.KEY_FUNCTION_TYPE_3);
+        if (StringUtils.isBlank(functionType3)) {
+            functionType3 = Constants.MODBUS_FUNCTION_03;
+            configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE_3, Constants.MODBUS_FUNCTION_03);
+            savePropertiesFlag = true;
+        }
+        // 设置默认选中
+        functionTypeInput3.getSelectionModel().select(Constants.MODBUS_FUNCTION_LIST.indexOf(functionType3));
+
+        // 设置#6.寄存器#3 - 监听的寄存器DataType
+        String dataType3 = configManager.getProperty(ConfigKeys.KEY_DATA_TYPE_3);
+        if (StringUtils.isBlank(dataType3)) {
+            dataType3 = DataTypeEnum.TWO_BYTE_INT_SIGNED.getName();
+            configManager.setProperty(ConfigKeys.KEY_DATA_TYPE_3, DataTypeEnum.TWO_BYTE_INT_SIGNED.getName());
+            savePropertiesFlag = true;
+        }
+        // 设置默认选中
+        dataTypeInput3.getSelectionModel().select(DataTypeEnum.indexOfName(dataType3));
+
+
+
+        // 设置#7.寄存器#4 - 是否启用监听
+        String listeningAddressEnabledFlag4 = configManager.getProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG_4);
+        if (StringUtils.isBlank(listeningAddressEnabledFlag4)) {
+            listeningAddressEnabledFlag4 = Constants.TRUE;
+            configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG_4, listeningAddressEnabledFlag4);
+            savePropertiesFlag = true;
+        }
+        listeningAddressEnabledInput4.setSelected(Objects.equals(listeningAddressEnabledFlag4, Constants.TRUE));
+
+        // 设置#7.寄存器#4 - 监听的寄存器Address
+        String listeningAddress4 = configManager.getProperty(ConfigKeys.KEY_LISTENING_ADDRESS_4);
+        if (StringUtils.isBlank(listeningAddress4)) {
+            listeningAddress4 = String.valueOf(Constants.DEFAULT_LISTENING_ADDRESS);
+            configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_4, listeningAddress4);
+            savePropertiesFlag = true;
+        }
+        listeningAddressInput4.setText(listeningAddress4);
+
+        // 设置#7.寄存器#4 - 监听的寄存器FunctionType
+        String functionType4 = configManager.getProperty(ConfigKeys.KEY_FUNCTION_TYPE_4);
+        if (StringUtils.isBlank(functionType4)) {
+            functionType4 = Constants.MODBUS_FUNCTION_03;
+            configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE_4, Constants.MODBUS_FUNCTION_03);
+            savePropertiesFlag = true;
+        }
+        // 设置默认选中
+        functionTypeInput4.getSelectionModel().select(Constants.MODBUS_FUNCTION_LIST.indexOf(functionType4));
+
+        // 设置#7.寄存器#4 - 监听的寄存器DataType
+        String dataType4 = configManager.getProperty(ConfigKeys.KEY_DATA_TYPE_4);
+        if (StringUtils.isBlank(dataType4)) {
+            dataType4 = DataTypeEnum.TWO_BYTE_INT_SIGNED.getName();
+            configManager.setProperty(ConfigKeys.KEY_DATA_TYPE_4, DataTypeEnum.TWO_BYTE_INT_SIGNED.getName());
+            savePropertiesFlag = true;
+        }
+        // 设置默认选中
+        dataTypeInput4.getSelectionModel().select(DataTypeEnum.indexOfName(dataType4));
+
+
+        // 设置#8.定时采集间隔（秒）
         String intervalSeconds = configManager.getProperty(ConfigKeys.KEY_INTERVAL_SECONDS);
         if (StringUtils.isBlank(intervalSeconds)) {
             intervalSeconds = String.valueOf(Constants.DEFAULT_INTERVAL_SECONDS);
@@ -296,7 +539,7 @@ public class MainWindowView implements Initializable {
         }
         intervalSecondsInput.setText(intervalSeconds);
 
-        // 设置#8.Hook回调URL
+        // 设置#9.Hook回调URL
         String callbackHookUrl = configManager.getProperty(ConfigKeys.KEY_CALLBACK_HOOK_URL);
         if (StringUtils.isBlank(callbackHookUrl)) {
             callbackHookUrl = serverConfig.buildUrl(Constants.DEFAULT_CALLBACK_HOOK_URI);
@@ -305,7 +548,7 @@ public class MainWindowView implements Initializable {
         }
         callbackHookUrlInput.setText(callbackHookUrl);
 
-        // 设置#8.Hook回调URL - 是否启用
+        // 设置#9.Hook回调URL - 是否启用
         String callbackHookEnabledFlag = configManager.getProperty(ConfigKeys.KEY_CALLBACK_HOOK_ENABLED_FLAG);
         if (StringUtils.isBlank(callbackHookEnabledFlag)) {
             callbackHookEnabledFlag = Constants.TRUE;
@@ -323,9 +566,27 @@ public class MainWindowView implements Initializable {
         portNameInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         baudRateInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         slaveIdInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+
+        listeningAddressEnabledInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         listeningAddressInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         functionTypeInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         dataTypeInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+
+        listeningAddressEnabledInput2.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        listeningAddressInput2.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        functionTypeInput2.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        dataTypeInput2.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+
+        listeningAddressEnabledInput3.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        listeningAddressInput3.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        functionTypeInput3.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        dataTypeInput3.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+
+        listeningAddressEnabledInput4.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        listeningAddressInput4.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        functionTypeInput4.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        dataTypeInput4.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
+        
         intervalSecondsInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         callbackHookUrlInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
         callbackHookEnabledInput.disableProperty().bindBidirectional(mainWindowModel.collectRunningFlagProperty());
@@ -484,59 +745,203 @@ public class MainWindowView implements Initializable {
             throw new RuntimeException("请输入正确的SlaveId（1 to 255）！");
         }
 
-        // 设置#4.监听的寄存器Address
-        String listeningAddressStr = listeningAddressInput.getText();
-        if (StringUtils.isNotBlank(listeningAddressStr) && NumberUtils.isCreatable(listeningAddressStr)) {
-            int listeningAddress = Integer.parseInt(listeningAddressStr);
-            if (listeningAddress < 0 || listeningAddress > 65535) {
-                this.mainWindowModel.displayBottomText("请输入正确的Address（0 to 65535）！");
-                throw new RuntimeException("请输入正确的Address（0 to 65535）！");
+        // 设置#4.寄存器#1 - 是否启用监听
+        boolean listeningAddressEnabledFlag = listeningAddressEnabledInput.isSelected();
+        settingsWindowModel.setListeningAddressEnabledFlag(listeningAddressEnabledFlag);
+        configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG, listeningAddressEnabledFlag ? Constants.TRUE : Constants.FALSE);
+        if(listeningAddressEnabledFlag) {
+            // 设置#4.寄存器#1 - 监听的寄存器Address
+            String listeningAddressStr = listeningAddressInput.getText();
+            if (StringUtils.isNotBlank(listeningAddressStr) && NumberUtils.isCreatable(listeningAddressStr)) {
+                int listeningAddress = Integer.parseInt(listeningAddressStr);
+                if (listeningAddress < 0 || listeningAddress > 65535) {
+                    this.mainWindowModel.displayBottomText("寄存器#1 - 请输入正确的Address（0 to 65535）！");
+                    throw new RuntimeException("寄存器#1 - 请输入正确的Address（0 to 65535）！");
+                }
+                log.info("==== applySettings ==== 寄存器#1 - listeningAddress = {}", listeningAddress);
+                settingsWindowModel.setListeningAddress(listeningAddress);
+                configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS, listeningAddressStr);
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#1 - 请输入正确的Address（0 to 65535）！");
+                throw new RuntimeException("寄存器#1 - 请输入正确的Address（0 to 65535）！");
             }
-            log.info("==== applySettings ==== listeningAddress = {}", listeningAddress);
-            settingsWindowModel.setListeningAddress(listeningAddress);
-            configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS, listeningAddressStr);
-        } else {
-            this.mainWindowModel.displayBottomText("请输入正确的Address（0 to 65535）！");
-            throw new RuntimeException("请输入正确的Address（0 to 65535）！");
+
+            // 设置#4.寄存器#1 - 监听的寄存器FunctionType
+            String functionType = functionTypeInput.getSelectionModel().getSelectedItem();
+            if (StringUtils.isNotBlank(functionType)) {
+                log.info("==== applySettings ==== 寄存器#1 - functionType = {}", functionType);
+                settingsWindowModel.setFunctionType(functionType);
+                configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE, functionType);
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#1 - 请选择Function！");
+                throw new RuntimeException("寄存器#1 - 请选择Function！");
+            }
+
+            // 设置#4.寄存器#1 - 监听的寄存器DataType
+            String dataType = dataTypeInput.getSelectionModel().getSelectedItem();
+            if (StringUtils.isNotBlank(dataType)) {
+                log.info("==== applySettings ==== 寄存器#1 - dataType = {}", dataType);
+                DataTypeEnum dataTypeEnum = DataTypeEnum.ofDisplayName(dataType);
+                settingsWindowModel.setDataType(dataTypeEnum.getValue());
+                configManager.setProperty(ConfigKeys.KEY_DATA_TYPE, dataTypeEnum.getName());
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#1 - 请选择Function！");
+                throw new RuntimeException("寄存器#1 - 请选择Function！");
+            }
         }
 
-        // 设置#5.监听的寄存器FunctionType
-        String functionType = functionTypeInput.getSelectionModel().getSelectedItem();
-        if (StringUtils.isNotBlank(functionType)) {
-            log.info("==== applySettings ==== functionType = {}", functionType);
-            settingsWindowModel.setFunctionType(functionType);
-            configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE, functionType);
-        } else {
-            this.mainWindowModel.displayBottomText("请选择Function！");
-            throw new RuntimeException("请选择Function！");
+
+        // 设置#5.寄存器#2 - 是否启用监听
+        boolean listeningAddressEnabledFlag2 = listeningAddressEnabledInput2.isSelected();
+        settingsWindowModel.setListeningAddressEnabledFlag2(listeningAddressEnabledFlag2);
+        configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG_2, listeningAddressEnabledFlag2 ? Constants.TRUE : Constants.FALSE);
+        if(listeningAddressEnabledFlag2) {
+            // 设置#5.寄存器#2 - 监听的寄存器Address
+            String listeningAddressStr = listeningAddressInput2.getText();
+            if (StringUtils.isNotBlank(listeningAddressStr) && NumberUtils.isCreatable(listeningAddressStr)) {
+                int listeningAddress = Integer.parseInt(listeningAddressStr);
+                if (listeningAddress < 0 || listeningAddress > 65535) {
+                    this.mainWindowModel.displayBottomText("寄存器#2 - 请输入正确的Address（0 to 65535）！");
+                    throw new RuntimeException("寄存器#2 - 请输入正确的Address（0 to 65535）！");
+                }
+                log.info("==== applySettings ==== 寄存器#2 - listeningAddress = {}", listeningAddress);
+                settingsWindowModel.setListeningAddress2(listeningAddress);
+                configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_2, listeningAddressStr);
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#2 - 请输入正确的Address（0 to 65535）！");
+                throw new RuntimeException("寄存器#2 - 请输入正确的Address（0 to 65535）！");
+            }
+
+            // 设置#5.寄存器#2 - 监听的寄存器FunctionType
+            String functionType = functionTypeInput2.getSelectionModel().getSelectedItem();
+            if (StringUtils.isNotBlank(functionType)) {
+                log.info("==== applySettings ==== 寄存器#2 - functionType = {}", functionType);
+                settingsWindowModel.setFunctionType2(functionType);
+                configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE_2, functionType);
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#2 - 请选择Function！");
+                throw new RuntimeException("寄存器#2 - 请选择Function！");
+            }
+
+            // 设置#5.寄存器#2 - 监听的寄存器DataType
+            String dataType = dataTypeInput2.getSelectionModel().getSelectedItem();
+            if (StringUtils.isNotBlank(dataType)) {
+                log.info("==== applySettings ==== 寄存器#2 - dataType = {}", dataType);
+                DataTypeEnum dataTypeEnum = DataTypeEnum.ofDisplayName(dataType);
+                settingsWindowModel.setDataType2(dataTypeEnum.getValue());
+                configManager.setProperty(ConfigKeys.KEY_DATA_TYPE_2, dataTypeEnum.getName());
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#2 - 请选择Function！");
+                throw new RuntimeException("寄存器#2 - 请选择Function！");
+            }
         }
 
-        // 设置#6.监听的寄存器DataType
-        String dataType = dataTypeInput.getSelectionModel().getSelectedItem();
-        if (StringUtils.isNotBlank(dataType)) {
-            log.info("==== applySettings ==== dataType = {}", dataType);
-            DataTypeEnum dataTypeEnum = DataTypeEnum.ofDisplayName(dataType);
-            settingsWindowModel.setDataType(dataTypeEnum.getValue());
-            configManager.setProperty(ConfigKeys.KEY_DATA_TYPE, dataTypeEnum.getName());
-        } else {
-            this.mainWindowModel.displayBottomText("请选择Function！");
-            throw new RuntimeException("请选择Function！");
+
+        // 设置#6.寄存器#3 - 是否启用监听
+        boolean listeningAddressEnabledFlag3 = listeningAddressEnabledInput3.isSelected();
+        settingsWindowModel.setListeningAddressEnabledFlag3(listeningAddressEnabledFlag3);
+        configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG_3, listeningAddressEnabledFlag3 ? Constants.TRUE : Constants.FALSE);
+        if(listeningAddressEnabledFlag3) {
+            // 设置#6.寄存器#3 - 监听的寄存器Address
+            String listeningAddressStr = listeningAddressInput3.getText();
+            if (StringUtils.isNotBlank(listeningAddressStr) && NumberUtils.isCreatable(listeningAddressStr)) {
+                int listeningAddress = Integer.parseInt(listeningAddressStr);
+                if (listeningAddress < 0 || listeningAddress > 65535) {
+                    this.mainWindowModel.displayBottomText("寄存器#3 - 请输入正确的Address（0 to 65535）！");
+                    throw new RuntimeException("寄存器#3 - 请输入正确的Address（0 to 65535）！");
+                }
+                log.info("==== applySettings ==== 寄存器#3 - listeningAddress = {}", listeningAddress);
+                settingsWindowModel.setListeningAddress3(listeningAddress);
+                configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_3, listeningAddressStr);
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#3 - 请输入正确的Address（0 to 65535）！");
+                throw new RuntimeException("寄存器#3 - 请输入正确的Address（0 to 65535）！");
+            }
+
+            // 设置#6.寄存器#3 - 监听的寄存器FunctionType
+            String functionType = functionTypeInput3.getSelectionModel().getSelectedItem();
+            if (StringUtils.isNotBlank(functionType)) {
+                log.info("==== applySettings ==== 寄存器#3 - functionType = {}", functionType);
+                settingsWindowModel.setFunctionType3(functionType);
+                configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE_3, functionType);
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#3 - 请选择Function！");
+                throw new RuntimeException("寄存器#3 - 请选择Function！");
+            }
+
+            // 设置#6.寄存器#3 - 监听的寄存器DataType
+            String dataType = dataTypeInput3.getSelectionModel().getSelectedItem();
+            if (StringUtils.isNotBlank(dataType)) {
+                log.info("==== applySettings ==== 寄存器#3 - dataType = {}", dataType);
+                DataTypeEnum dataTypeEnum = DataTypeEnum.ofDisplayName(dataType);
+                settingsWindowModel.setDataType3(dataTypeEnum.getValue());
+                configManager.setProperty(ConfigKeys.KEY_DATA_TYPE_3, dataTypeEnum.getName());
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#3 - 请选择Function！");
+                throw new RuntimeException("寄存器#3 - 请选择Function！");
+            }
         }
 
-        // 设置#7.定时采集间隔（秒）
+
+        // 设置#7.寄存器#4 - 是否启用监听
+        boolean listeningAddressEnabledFlag4 = listeningAddressEnabledInput4.isSelected();
+        settingsWindowModel.setListeningAddressEnabledFlag4(listeningAddressEnabledFlag4);
+        configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_ENABLED_FLAG_4, listeningAddressEnabledFlag4 ? Constants.TRUE : Constants.FALSE);
+        if(listeningAddressEnabledFlag4) {
+            // 设置#7.寄存器#4 - 监听的寄存器Address
+            String listeningAddressStr = listeningAddressInput4.getText();
+            if (StringUtils.isNotBlank(listeningAddressStr) && NumberUtils.isCreatable(listeningAddressStr)) {
+                int listeningAddress = Integer.parseInt(listeningAddressStr);
+                if (listeningAddress < 0 || listeningAddress > 65535) {
+                    this.mainWindowModel.displayBottomText("寄存器#4 - 请输入正确的Address（0 to 65535）！");
+                    throw new RuntimeException("寄存器#4 - 请输入正确的Address（0 to 65535）！");
+                }
+                log.info("==== applySettings ==== 寄存器#4 - listeningAddress = {}", listeningAddress);
+                settingsWindowModel.setListeningAddress4(listeningAddress);
+                configManager.setProperty(ConfigKeys.KEY_LISTENING_ADDRESS_4, listeningAddressStr);
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#4 - 请输入正确的Address（0 to 65535）！");
+                throw new RuntimeException("寄存器#4 - 请输入正确的Address（0 to 65535）！");
+            }
+
+            // 设置#7.寄存器#4 - 监听的寄存器FunctionType
+            String functionType = functionTypeInput4.getSelectionModel().getSelectedItem();
+            if (StringUtils.isNotBlank(functionType)) {
+                log.info("==== applySettings ==== 寄存器#4 - functionType = {}", functionType);
+                settingsWindowModel.setFunctionType4(functionType);
+                configManager.setProperty(ConfigKeys.KEY_FUNCTION_TYPE_4, functionType);
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#4 - 请选择Function！");
+                throw new RuntimeException("寄存器#4 - 请选择Function！");
+            }
+
+            // 设置#7.寄存器#4 - 监听的寄存器DataType
+            String dataType = dataTypeInput4.getSelectionModel().getSelectedItem();
+            if (StringUtils.isNotBlank(dataType)) {
+                log.info("==== applySettings ==== 寄存器#4 - dataType = {}", dataType);
+                DataTypeEnum dataTypeEnum = DataTypeEnum.ofDisplayName(dataType);
+                settingsWindowModel.setDataType4(dataTypeEnum.getValue());
+                configManager.setProperty(ConfigKeys.KEY_DATA_TYPE_4, dataTypeEnum.getName());
+            } else {
+                this.mainWindowModel.displayBottomText("寄存器#4 - 请选择Function！");
+                throw new RuntimeException("寄存器#4 - 请选择Function！");
+            }
+        }
+
+        // 设置#8.定时采集间隔（秒）
         int intervalSeconds = this.processIntervalSecondsInput(intervalSecondsInput.getText());
         String intervalSecondsText = String.valueOf(intervalSeconds);
         intervalSecondsInput.setText(intervalSecondsText);
         settingsWindowModel.setIntervalSeconds(intervalSeconds);
         configManager.setProperty(ConfigKeys.KEY_INTERVAL_SECONDS, intervalSecondsText);
 
-        // 设置#8.Hook回调URL
+        // 设置#9.Hook回调URL
         String callbackHookUrl = this.processCallbackHookUrlInput(callbackHookUrlInput.getText());
         callbackHookUrlInput.setText(callbackHookUrl);
         settingsWindowModel.setCallbackHookUrl(callbackHookUrl);
         configManager.setProperty(ConfigKeys.KEY_CALLBACK_HOOK_URL, callbackHookUrl);
 
-        // 设置#8.Hook回调URL - 是否启用
+        // 设置#9.Hook回调URL - 是否启用
         boolean callbackHookEnabledFlag = callbackHookEnabledInput.isSelected();
         settingsWindowModel.setCallbackHookEnabledFlag(callbackHookEnabledFlag);
         configManager.setProperty(ConfigKeys.KEY_CALLBACK_HOOK_ENABLED_FLAG, callbackHookEnabledFlag ? Constants.TRUE : Constants.FALSE);
