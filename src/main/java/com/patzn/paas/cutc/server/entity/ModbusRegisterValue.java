@@ -63,7 +63,7 @@ public class ModbusRegisterValue {
     private String collectTime;
 
     public String displayValue() {
-        return String.format("%s=%s", listeningAddress, actualValue);
+        return String.format("[%s]%s=%s", slaveId, listeningAddress, actualValue);
     }
 
 }

@@ -152,35 +152,26 @@
                 <Separator prefWidth="200.0"/>
                 <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" spacing="10.0" styleClass="settingsRow">
                     <children>
-                        <Label minHeight="32.0" text="SlaveID：" textFill="WHITE">
-                            <font>
-                                <Font name="Microsoft YaHei UI" size="18.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="slaveIdInput" prefHeight="32.0" prefWidth="200" />
-                        <Label minHeight="32.0" text="（1 to 255）" textFill="WHITE">
-                            <font>
-                                <Font name="Microsoft YaHei UI" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" right="10.0" />
-                    </padding>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" spacing="10.0" styleClass="settingsRow">
-                    <children>
-                        <CheckBox fx:id="listeningAddressEnabledInput" mnemonicParsing="false" text="1#" textFill="WHITE">
+                        <CheckBox fx:id="listeningAddressEnabledInput" mnemonicParsing="false" text="1#"
+                                  textFill="WHITE">
                             <font>
                                 <Font name="Microsoft YaHei UI" size="18.0"/>
                             </font>
                         </CheckBox>
-                        <Label minHeight="32.0" text="Address（0 to 65535）：" textFill="WHITE">
+                        <Label minHeight="32.0" text="SlaveID：" textFill="WHITE">
                             <font>
                                 <Font name="Microsoft YaHei UI" size="18.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="listeningAddressInput" prefHeight="32.0" prefWidth="200"/>
+                        <TextField fx:id="slaveIdInput" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：1 to 255"/>
+                        <Label minHeight="32.0" text="Address：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="listeningAddressInput" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：0 to 65535"/>
 
                         <Label minHeight="32.0" text="Function：" textFill="WHITE">
                             <font>
@@ -203,17 +194,26 @@
 
                 <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" spacing="10.0" styleClass="settingsRow">
                     <children>
-                        <CheckBox fx:id="listeningAddressEnabledInput2" mnemonicParsing="false" text="2#" textFill="WHITE">
+                        <CheckBox fx:id="listeningAddressEnabledInput2" mnemonicParsing="false" text="2#"
+                                  textFill="WHITE">
                             <font>
                                 <Font name="Microsoft YaHei UI" size="18.0"/>
                             </font>
                         </CheckBox>
-                        <Label minHeight="32.0" text="Address（0 to 65535）：" textFill="WHITE">
+                        <Label minHeight="32.0" text="SlaveID：" textFill="WHITE">
                             <font>
                                 <Font name="Microsoft YaHei UI" size="18.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="listeningAddressInput2" prefHeight="32.0" prefWidth="200"/>
+                        <TextField fx:id="slaveIdInput2" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：1 to 255"/>
+                        <Label minHeight="32.0" text="Address：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="listeningAddressInput2" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：0 to 65535"/>
 
                         <Label minHeight="32.0" text="Function：" textFill="WHITE">
                             <font>
@@ -236,17 +236,26 @@
 
                 <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" spacing="10.0" styleClass="settingsRow">
                     <children>
-                        <CheckBox fx:id="listeningAddressEnabledInput3" mnemonicParsing="false" text="3#" textFill="WHITE">
+                        <CheckBox fx:id="listeningAddressEnabledInput3" mnemonicParsing="false" text="3#"
+                                  textFill="WHITE">
                             <font>
                                 <Font name="Microsoft YaHei UI" size="18.0"/>
                             </font>
                         </CheckBox>
-                        <Label minHeight="32.0" text="Address（0 to 65535）：" textFill="WHITE">
+                        <Label minHeight="32.0" text="SlaveID：" textFill="WHITE">
                             <font>
                                 <Font name="Microsoft YaHei UI" size="18.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="listeningAddressInput3" prefHeight="32.0" prefWidth="200"/>
+                        <TextField fx:id="slaveIdInput3" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：1 to 255"/>
+                        <Label minHeight="32.0" text="Address：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="listeningAddressInput3" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：0 to 65535"/>
 
                         <Label minHeight="32.0" text="Function：" textFill="WHITE">
                             <font>
@@ -269,17 +278,27 @@
 
                 <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" spacing="10.0" styleClass="settingsRow">
                     <children>
-                        <CheckBox fx:id="listeningAddressEnabledInput4" mnemonicParsing="false" text="4#" textFill="WHITE">
+                        <CheckBox fx:id="listeningAddressEnabledInput4" mnemonicParsing="false" text="4#"
+                                  textFill="WHITE">
                             <font>
                                 <Font name="Microsoft YaHei UI" size="18.0"/>
                             </font>
                         </CheckBox>
-                        <Label minHeight="32.0" text="Address（0 to 65535）：" textFill="WHITE">
+                        <Label minHeight="32.0" text="SlaveID：" textFill="WHITE">
                             <font>
                                 <Font name="Microsoft YaHei UI" size="18.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="listeningAddressInput4" prefHeight="32.0" prefWidth="200"/>
+                        <TextField fx:id="slaveIdInput4" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：1 to 255"/>
+
+                        <Label minHeight="32.0" text="Address：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="listeningAddressInput4" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：0 to 65535"/>
 
                         <Label minHeight="32.0" text="Function：" textFill="WHITE">
                             <font>
@@ -300,6 +319,94 @@
                     </padding>
                 </HBox>
 
+
+                <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" spacing="10.0" styleClass="settingsRow">
+                    <children>
+                        <CheckBox fx:id="listeningAddressEnabledInput5" mnemonicParsing="false" text="5#"
+                                  textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </CheckBox>
+                        <Label minHeight="32.0" text="SlaveID：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="slaveIdInput5" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：1 to 255"/>
+
+                        <Label minHeight="32.0" text="Address：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="listeningAddressInput5" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：0 to 65535"/>
+
+                        <Label minHeight="32.0" text="Function：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="functionTypeInput5" prefHeight="32.0" prefWidth="200"/>
+
+                        <Label minHeight="32.0" text="DataType：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="dataTypeInput5" prefHeight="32.0" prefWidth="200"/>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" right="10.0"/>
+                    </padding>
+                </HBox>
+
+
+                <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" spacing="10.0" styleClass="settingsRow">
+                    <children>
+                        <CheckBox fx:id="listeningAddressEnabledInput6" mnemonicParsing="false" text="6#"
+                                  textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </CheckBox>
+                        <Label minHeight="32.0" text="SlaveID：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="slaveIdInput6" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：1 to 255"/>
+
+                        <Label minHeight="32.0" text="Address：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="listeningAddressInput6" prefHeight="32.0" prefWidth="120"
+                                   promptText="取值范围：0 to 65535"/>
+
+                        <Label minHeight="32.0" text="Function：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="functionTypeInput6" prefHeight="32.0" prefWidth="200"/>
+
+                        <Label minHeight="32.0" text="DataType：" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft YaHei UI" size="18.0"/>
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="dataTypeInput6" prefHeight="32.0" prefWidth="200"/>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" right="10.0"/>
+                    </padding>
+                </HBox>
+
                 <Separator prefWidth="200.0"/>
                 <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" spacing="10.0" styleClass="settingsRow">
                     <children>
@@ -308,8 +415,8 @@
                                 <Font name="Microsoft YaHei UI" size="18.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="intervalSecondsInput" prefHeight="32.0" promptText="请输入正整数"
-                                   prefWidth="200"/>
+                        <TextField fx:id="intervalSecondsInput" prefHeight="32.0" prefWidth="120"
+                                   promptText="请输入正整数"/>
                         <Label minHeight="32.0" text="（取值：1~300，默认：5）" textFill="WHITE">
                             <font>
                                 <Font name="Microsoft YaHei UI" size="18.0"/>

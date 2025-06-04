@@ -18,27 +18,42 @@ public class SettingsWindowModel {
 
     private final StringProperty portName = new SimpleStringProperty();
     private final IntegerProperty baudRate = new SimpleIntegerProperty();
-    private final IntegerProperty slaveId = new SimpleIntegerProperty();
 
+    private final IntegerProperty slaveId = new SimpleIntegerProperty();
     private final BooleanProperty listeningAddressEnabledFlag = new SimpleBooleanProperty(true);
     private final IntegerProperty listeningAddress = new SimpleIntegerProperty();
     private final StringProperty functionType = new SimpleStringProperty();
     private final IntegerProperty dataType = new SimpleIntegerProperty();
 
+    private final IntegerProperty slaveId2 = new SimpleIntegerProperty();
     private final BooleanProperty listeningAddressEnabledFlag2 = new SimpleBooleanProperty(false);
     private final IntegerProperty listeningAddress2 = new SimpleIntegerProperty();
     private final StringProperty functionType2 = new SimpleStringProperty();
     private final IntegerProperty dataType2 = new SimpleIntegerProperty();
 
+    private final IntegerProperty slaveId3 = new SimpleIntegerProperty();
     private final BooleanProperty listeningAddressEnabledFlag3 = new SimpleBooleanProperty(false);
     private final IntegerProperty listeningAddress3 = new SimpleIntegerProperty();
     private final StringProperty functionType3 = new SimpleStringProperty();
     private final IntegerProperty dataType3 = new SimpleIntegerProperty();
 
+    private final IntegerProperty slaveId4 = new SimpleIntegerProperty();
     private final BooleanProperty listeningAddressEnabledFlag4 = new SimpleBooleanProperty(false);
     private final IntegerProperty listeningAddress4 = new SimpleIntegerProperty();
     private final StringProperty functionType4 = new SimpleStringProperty();
     private final IntegerProperty dataType4 = new SimpleIntegerProperty();
+
+    private final IntegerProperty slaveId5 = new SimpleIntegerProperty();
+    private final BooleanProperty listeningAddressEnabledFlag5 = new SimpleBooleanProperty(false);
+    private final IntegerProperty listeningAddress5 = new SimpleIntegerProperty();
+    private final StringProperty functionType5 = new SimpleStringProperty();
+    private final IntegerProperty dataType5 = new SimpleIntegerProperty();
+
+    private final IntegerProperty slaveId6 = new SimpleIntegerProperty();
+    private final BooleanProperty listeningAddressEnabledFlag6 = new SimpleBooleanProperty(false);
+    private final IntegerProperty listeningAddress6 = new SimpleIntegerProperty();
+    private final StringProperty functionType6 = new SimpleStringProperty();
+    private final IntegerProperty dataType6 = new SimpleIntegerProperty();
 
     public Image getCloseWindowButtonImage() {
         return closeWindowButtonImage.get();
@@ -125,6 +140,19 @@ public class SettingsWindowModel {
         this.baudRate.set(baudRate);
     }
 
+    public boolean isListeningAddressEnabledFlag() {
+        return listeningAddressEnabledFlag.get();
+    }
+
+    public BooleanProperty listeningAddressEnabledFlagProperty() {
+        return listeningAddressEnabledFlag;
+    }
+
+    public void setListeningAddressEnabledFlag(boolean listeningAddressEnabledFlag) {
+        this.listeningAddressEnabledFlag.set(listeningAddressEnabledFlag);
+    }
+
+
 
     public int getSlaveId() {
         return slaveId.get();
@@ -139,17 +167,6 @@ public class SettingsWindowModel {
     }
 
 
-    public boolean isListeningAddressEnabledFlag() {
-        return listeningAddressEnabledFlag.get();
-    }
-
-    public BooleanProperty listeningAddressEnabledFlagProperty() {
-        return listeningAddressEnabledFlag;
-    }
-
-    public void setListeningAddressEnabledFlag(boolean listeningAddressEnabledFlag) {
-        this.listeningAddressEnabledFlag.set(listeningAddressEnabledFlag);
-    }
 
     public int getListeningAddress() {
         return listeningAddress.get();
@@ -199,6 +216,19 @@ public class SettingsWindowModel {
         this.listeningAddressEnabledFlag2.set(listeningAddressEnabledFlag2);
     }
 
+
+    public int getSlaveId2() {
+        return slaveId2.get();
+    }
+
+    public IntegerProperty slaveId2Property() {
+        return slaveId2;
+    }
+
+    public void setSlaveId2(int slaveId2) {
+        this.slaveId2.set(slaveId2);
+    }
+    
     public int getListeningAddress2() {
         return listeningAddress2.get();
     }
@@ -247,6 +277,20 @@ public class SettingsWindowModel {
         this.listeningAddressEnabledFlag3.set(listeningAddressEnabledFlag3);
     }
 
+
+    public int getSlaveId3() {
+        return slaveId3.get();
+    }
+
+    public IntegerProperty slaveId3Property() {
+        return slaveId3;
+    }
+
+    public void setSlaveId3(int slaveId3) {
+        this.slaveId3.set(slaveId3);
+    }
+
+    
     public int getListeningAddress3() {
         return listeningAddress3.get();
     }
@@ -295,6 +339,19 @@ public class SettingsWindowModel {
         this.listeningAddressEnabledFlag4.set(listeningAddressEnabledFlag4);
     }
 
+
+    public int getSlaveId4() {
+        return slaveId4.get();
+    }
+
+    public IntegerProperty slaveId4Property() {
+        return slaveId4;
+    }
+
+    public void setSlaveId4(int slaveId4) {
+        this.slaveId4.set(slaveId4);
+    }
+    
     public int getListeningAddress4() {
         return listeningAddress4.get();
     }
@@ -330,4 +387,138 @@ public class SettingsWindowModel {
     public void setDataType4(int dataType4) {
         this.dataType4.set(dataType4);
     }
+
+
+
+
+    public boolean isListeningAddressEnabledFlag5() {
+        return listeningAddressEnabledFlag5.get();
+    }
+
+    public BooleanProperty listeningAddressEnabledFlag5Property() {
+        return listeningAddressEnabledFlag5;
+    }
+
+    public void setListeningAddressEnabledFlag5(boolean listeningAddressEnabledFlag5) {
+        this.listeningAddressEnabledFlag5.set(listeningAddressEnabledFlag5);
+    }
+
+
+    public int getSlaveId5() {
+        return slaveId5.get();
+    }
+
+    public IntegerProperty slaveId5Property() {
+        return slaveId5;
+    }
+
+    public void setSlaveId5(int slaveId5) {
+        this.slaveId5.set(slaveId5);
+    }
+
+    public int getListeningAddress5() {
+        return listeningAddress5.get();
+    }
+
+    public IntegerProperty listeningAddress5Property() {
+        return listeningAddress5;
+    }
+
+    public void setListeningAddress5(int listeningAddress5) {
+        this.listeningAddress5.set(listeningAddress5);
+    }
+
+    public String getFunctionType5() {
+        return functionType5.get();
+    }
+
+    public StringProperty functionType5Property() {
+        return functionType5;
+    }
+
+    public void setFunctionType5(String functionType5) {
+        this.functionType5.set(functionType5);
+    }
+
+    public int getDataType5() {
+        return dataType5.get();
+    }
+
+    public IntegerProperty dataType5Property() {
+        return dataType5;
+    }
+
+    public void setDataType5(int dataType5) {
+        this.dataType5.set(dataType5);
+    }
+
+
+
+
+
+
+
+
+
+    public boolean isListeningAddressEnabledFlag6() {
+        return listeningAddressEnabledFlag6.get();
+    }
+
+    public BooleanProperty listeningAddressEnabledFlag6Property() {
+        return listeningAddressEnabledFlag6;
+    }
+
+    public void setListeningAddressEnabledFlag6(boolean listeningAddressEnabledFlag6) {
+        this.listeningAddressEnabledFlag6.set(listeningAddressEnabledFlag6);
+    }
+
+
+    public int getSlaveId6() {
+        return slaveId6.get();
+    }
+
+    public IntegerProperty slaveId6Property() {
+        return slaveId6;
+    }
+
+    public void setSlaveId6(int slaveId6) {
+        this.slaveId6.set(slaveId6);
+    }
+
+    public int getListeningAddress6() {
+        return listeningAddress6.get();
+    }
+
+    public IntegerProperty listeningAddress6Property() {
+        return listeningAddress6;
+    }
+
+    public void setListeningAddress6(int listeningAddress6) {
+        this.listeningAddress6.set(listeningAddress6);
+    }
+
+    public String getFunctionType6() {
+        return functionType6.get();
+    }
+
+    public StringProperty functionType6Property() {
+        return functionType6;
+    }
+
+    public void setFunctionType6(String functionType6) {
+        this.functionType6.set(functionType6);
+    }
+
+    public int getDataType6() {
+        return dataType6.get();
+    }
+
+    public IntegerProperty dataType6Property() {
+        return dataType6;
+    }
+
+    public void setDataType6(int dataType6) {
+        this.dataType6.set(dataType6);
+    }
+
 }

@@ -79,7 +79,7 @@ public class CollectTask implements Runnable {
             }
             if (settingsWindowModel.isListeningAddressEnabledFlag2()) {
                 ModbusRegisterValue result = this.collectActualValues(connection,
-                        settingsWindowModel.getSlaveId(),
+                        settingsWindowModel.getSlaveId2(),
                         settingsWindowModel.getListeningAddress2(),
                         settingsWindowModel.getFunctionType2(),
                         settingsWindowModel.getDataType2());
@@ -90,7 +90,7 @@ public class CollectTask implements Runnable {
             }
             if (settingsWindowModel.isListeningAddressEnabledFlag3()) {
                 ModbusRegisterValue result = this.collectActualValues(connection,
-                        settingsWindowModel.getSlaveId(),
+                        settingsWindowModel.getSlaveId3(),
                         settingsWindowModel.getListeningAddress3(),
                         settingsWindowModel.getFunctionType3(),
                         settingsWindowModel.getDataType3());
@@ -101,12 +101,34 @@ public class CollectTask implements Runnable {
             }
             if (settingsWindowModel.isListeningAddressEnabledFlag4()) {
                 ModbusRegisterValue result = this.collectActualValues(connection,
-                        settingsWindowModel.getSlaveId(),
+                        settingsWindowModel.getSlaveId4(),
                         settingsWindowModel.getListeningAddress4(),
                         settingsWindowModel.getFunctionType4(),
                         settingsWindowModel.getDataType4());
                 if (result != null) {
                     result.setPosition("4#");
+                    resultList.add(result);
+                }
+            }
+            if (settingsWindowModel.isListeningAddressEnabledFlag5()) {
+                ModbusRegisterValue result = this.collectActualValues(connection,
+                        settingsWindowModel.getSlaveId5(),
+                        settingsWindowModel.getListeningAddress5(),
+                        settingsWindowModel.getFunctionType5(),
+                        settingsWindowModel.getDataType5());
+                if (result != null) {
+                    result.setPosition("5#");
+                    resultList.add(result);
+                }
+            }
+            if (settingsWindowModel.isListeningAddressEnabledFlag6()) {
+                ModbusRegisterValue result = this.collectActualValues(connection,
+                        settingsWindowModel.getSlaveId6(),
+                        settingsWindowModel.getListeningAddress6(),
+                        settingsWindowModel.getFunctionType6(),
+                        settingsWindowModel.getDataType6());
+                if (result != null) {
+                    result.setPosition("6#");
                     resultList.add(result);
                 }
             }
